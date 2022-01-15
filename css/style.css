@@ -1061,7 +1061,7 @@ body.popup-show::after {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(90deg, #fbf138 0%, rgba(253, 249, 182, 0.45) 145.23%);
-  z-index: 0;
+  z-index: -1;
   opacity: 0.2;
 }
 
@@ -1185,9 +1185,27 @@ body.popup-show::after {
 }
 .events__item {
   position: relative;
+  overflow: hidden;
+}
+.events__item:hover .events__image::before {
+  opacity: 0.6;
+}
+.events__item:hover .events__button {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (min-width: 47.99875em) {
+  .events__item:hover .info-item__button {
+    transform: translate(100%);
+    opacity: 0;
+  }
 }
 .events__image {
   padding-bottom: 163.4877384196%;
+  transition: all 0.3s ease 0s;
+  /*	&:hover::before {
+  	opacity: 0.6;
+  }*/
 }
 @media (max-width: 47.99875em) {
   .events__image {
@@ -1203,6 +1221,7 @@ body.popup-show::after {
   background-image: linear-gradient(180deg, #fbf138 0%, rgba(253, 249, 182, 0) 100%);
   z-index: 2;
   opacity: 0.3;
+  transition: all 0.3s ease 0s;
 }
 .events__info {
   position: absolute;
@@ -1321,35 +1340,61 @@ body.popup-show::after {
   }
 }
 .info-item__signup {
-  position: absolute;
   cursor: pointer;
-  display: none;
-  bottom: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
   overflow: hidden;
   transition: all 0.3s ease 0s;
   /*background-color: $mainColor;*/
 }
+@media (max-width: 47.99875em) {
+  .info-item__signup {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+  }
+}
 .info-item__signup:hover {
-  width: 33px;
-  height: 33px;
   transition: all 0.3s ease 0s;
+}
+@media (max-width: 47.99875em) {
+  .info-item__signup:hover {
+    width: 33px;
+    height: 33px;
+  }
 }
 @media (max-width: 47.99875em) {
   .info-item__signup {
     display: inline-block;
   }
 }
+.info-item__signup .events__button {
+  color: #fbf138;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  transform: scale(0);
+  background-color: #2b3541;
+}
+@media (max-width: 47.99875em) {
+  .info-item__signup .events__button {
+    display: none;
+  }
+}
 
 .button-signup {
+  display: none;
   position: relative;
-  display: flex;
   align-items: center;
   height: 100%;
   background-color: #2b3541;
   transition: all 0.5s ease-in-out 0s;
+}
+@media (max-width: 47.99875em) {
+  .button-signup {
+    display: flex;
+  }
 }
 .button-signup span, .button-signup::before {
   content: "";
@@ -1463,10 +1508,23 @@ body.popup-show::after {
 }
 .shedule__items:hover .item-shedule__descript {
   display: block;
-  height: 100%;
-  transform: scale(1);
   opacity: 1;
-  transition: all 0.3s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+@media (min-width: 120em) {
+  .shedule__items:hover .item-shedule__descript {
+    font-size: 1.125rem;
+  }
+}
+@media (min-width: 29.99875em) and (max-width: 120em) {
+  .shedule__items:hover .item-shedule__descript {
+    font-size: clamp( 0.75rem , 0.6250069443rem  +  0.4166608797vw , 1.125rem );
+  }
+}
+@media (max-width: 29.99875em) {
+  .shedule__items:hover .item-shedule__descript {
+    font-size: 0.75rem;
+  }
 }
 @media (min-width: 61.99875em) {
   .grid-item-11 {
@@ -1548,10 +1606,9 @@ body.popup-show::after {
 }
 .item-shedule__descript {
   opacity: 0;
-  height: 0;
   overflow: hidden;
-  transform: scale(0);
   transition: all 0.3s ease 0s;
+  font-size: 0;
 }
 
 /*============= SUBSCRIPTION =============*/
