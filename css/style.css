@@ -695,7 +695,7 @@ body.popup-show::after {
   }
 }
 
-.menu-open .menu__body {
+.menu-open .header .menu__body {
   top: 0;
   transition: all 0.5s ease 0s;
 }
